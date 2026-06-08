@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор переведённых документов</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<!-- Blob for mid-page glow -->
+<div class="blob-mid"></div>
+
+<div class="page">
+  <header class="app-header">
+    <h1>Генератор документов</h1>
+    <p class="subtitle">Заполните поля и получите PDF с печатью и подписью</p>
+  </header>
+
+  <!-- Выбор типа документа -->
+  <section class="card">
+    <h2>Тип документа</h2>
+    <select id="docType"></select>
+  </section>
+
+  <!-- Поля документа -->
+  <section class="card">
+    <h2>Данные документа</h2>
+    <form id="docForm"></form>
+  </section>
+
+  <!-- Кнопки -->
+  <section class="card actions">
+    <button id="generateBtn" type="button">⬇ Сгенерировать PDF</button>
+    <button id="resetBtn" type="button" class="secondary">Очистить</button>
+    <span id="status" class="status"></span>
+  </section>
+</div>
+
+<!-- Встроенные изображения (шапка + обе печати) -->
+<script src="assets-embedded.js"></script>
+
+<!-- Логика -->
+<script src="templates.js"></script>
+<script src="pdf-builder.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
