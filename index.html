@@ -3,46 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Генератор переведённых документов</title>
+<title>DocForge — Генератор переводов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
-<!-- Blob for mid-page glow -->
-<div class="blob-mid"></div>
+<div class="bg-canvas">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+<div class="bg-noise"></div>
 
 <div class="page">
+
   <header class="app-header">
-    <h1>Генератор документов</h1>
-    <p class="subtitle">Заполните поля и получите PDF с печатью и подписью</p>
+    <div class="header-badge">
+      <span class="header-badge-dot"></span>
+      UA → DE / EN &nbsp;·&nbsp; Перевод документов
+    </div>
+    <h1>Генератор PDF</h1>
+    <p class="subtitle">Введите данные — получите готовый документ с печатью и подписью</p>
   </header>
 
-  <!-- Выбор типа документа -->
-  <section class="card">
-    <h2>Тип документа</h2>
-    <select id="docType"></select>
-  </section>
+  <div class="app-layout">
+    <div class="form-col">
 
-  <!-- Поля документа -->
-  <section class="card">
-    <h2>Данные документа</h2>
-    <form id="docForm"></form>
-  </section>
+      <section class="card">
+        <h2>Язык перевода</h2>
+        <div class="lang-toggle" id="langToggle"></div>
+      </section>
 
-  <!-- Кнопки -->
-  <section class="card actions">
-    <button id="generateBtn" type="button">⬇ Сгенерировать PDF</button>
-    <button id="resetBtn" type="button" class="secondary">Очистить</button>
-    <span id="status" class="status"></span>
-  </section>
+      <section class="card">
+        <h2>Тип документа</h2>
+        <div class="doctype-grid" id="docTypeGrid"></div>
+      </section>
+
+      <section class="card">
+        <h2>Данные документа</h2>
+        <form id="docForm"></form>
+      </section>
+
+      <section class="card actions">
+        <button id="generateBtn" type="button">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M7.5 1v9M3.5 7l4 4 4-4M1.5 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Сгенерировать PDF
+        </button>
+        <button id="resetBtn" type="button" class="secondary">Очистить</button>
+        <span id="status" class="status"></span>
+      </section>
+
+    </div>
+
+    <div class="preview-col">
+      <div class="preview-panel card">
+        <h2>Превью документа</h2>
+        <div id="preview-viewport">
+          <div id="preview-inner">
+            <div class="preview-empty">Начните заполнять форму…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- Встроенные изображения (шапка + обе печати) -->
 <script src="assets-embedded.js"></script>
-
-<!-- Логика -->
 <script src="templates.js"></script>
 <script src="pdf-builder.js"></script>
 <script src="app.js"></script>
