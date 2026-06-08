@@ -258,10 +258,31 @@ function renderPreview() {
   const docPage = inner.querySelector(".doc-page");
   if (!docPage) return;
 
-  const scale = vp.clientWidth / (docPage.scrollWidth || 794);
-  docPage.style.transformOrigin = "top left";
-  docPage.style.transform = `scale(${scale})`;
-  inner.style.height = (docPage.scrollHeight * scale) + "px";
+  // Measure natural size before any scaling
+  const vpW      = vp.clientWidth;
+  const naturalW = docPage.scrollWidth  || 794;
+  const naturalH = docPage.scrollHeight;
+
+  // Fit to width; also never exceed 83% of window height
+  const scaleW = vpW / naturalW;
+  const maxH   = window.innerHeight * 0.83;
+  const scaleH = naturalH > maxH ? maxH / naturalH : scaleW;
+  const scale  = Math.min(scaleW, scaleH);
+
+  // Use zoom instead of transform:
+  // zoom scales layout + visual together — no layout/clip mismatch
+  docPage.style.zoom            = scale;
+  docPage.style.transform       = "";
+  docPage.style.transformOrigin = "";
+
+  // Center the document horizontally if narrower than viewport
+  const zoomedW = Math.round(naturalW * scale);
+  inner.style.height      = "";        // auto — wraps the zoomed doc
+  inner.style.width       = "";
+  inner.style.marginLeft  = "0";
+  inner.style.paddingLeft = zoomedW < vpW
+    ? Math.floor((vpW - zoomedW) / 2) + "px"
+    : "0";
 }
 
 /* ── GENERATE ────────────────────────────────── */

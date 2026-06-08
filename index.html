@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DocForge — Генератор переводов</title>
+<title>DocForge — Переводы документов</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -17,46 +18,68 @@
   <div class="bg-orb bg-orb-1"></div>
   <div class="bg-orb bg-orb-2"></div>
   <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
 </div>
 <div class="bg-noise"></div>
 
 <div class="page">
 
   <header class="app-header">
-    <div class="header-badge">
-      <span class="header-badge-dot"></span>
-      UA → DE / EN &nbsp;·&nbsp; Перевод документов
+    <div class="header-logo">
+      <div class="logo-mark">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 1.5h7l3 3V14H3V1.5z" stroke="rgba(255,255,255,0.95)" stroke-width="1.35" stroke-linejoin="round"/>
+          <path d="M10 1.5v3h3" stroke="rgba(255,255,255,0.95)" stroke-width="1.35" stroke-linejoin="round"/>
+          <path d="M5.5 8h5M5.5 10.5h3.5" stroke="rgba(255,255,255,0.80)" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-word">DocForge</span>
     </div>
-    <h1>Генератор PDF</h1>
-    <p class="subtitle">Введите данные — получите готовый документ с печатью и подписью</p>
+    <div class="header-route">UA <span class="route-arrow">→</span> DE / EN</div>
+    <p class="header-sub">Введите данные — получите готовый PDF с печатью и подписью</p>
   </header>
 
   <div class="app-layout">
     <div class="form-col">
 
       <section class="card">
-        <h2>Язык перевода</h2>
+        <div class="card-label">
+          <span class="step-num">01</span>
+          Язык перевода
+        </div>
         <div class="lang-toggle" id="langToggle"></div>
       </section>
 
       <section class="card">
-        <h2>Тип документа</h2>
+        <div class="card-label">
+          <span class="step-num">02</span>
+          Тип документа
+        </div>
         <div class="doctype-grid" id="docTypeGrid"></div>
       </section>
 
       <section class="card">
-        <h2>Данные документа</h2>
+        <div class="card-label">
+          <span class="step-num">03</span>
+          Данные документа
+        </div>
         <form id="docForm"></form>
       </section>
 
       <section class="card actions">
         <button id="generateBtn" type="button">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-            <path d="M7.5 1v9M3.5 7l4 4 4-4M1.5 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.5 1.5v8M4 6.5l3.5 3.5 3.5-3.5M1.5 13.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           Сгенерировать PDF
         </button>
-        <button id="resetBtn" type="button" class="secondary">Очистить</button>
+        <button id="resetBtn" type="button" class="secondary">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+            <path d="M2 6.5a4.5 4.5 0 1 0 4.5-4.5H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M2 2.5v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Очистить
+        </button>
         <span id="status" class="status"></span>
       </section>
 
@@ -64,7 +87,13 @@
 
     <div class="preview-col">
       <div class="preview-panel card">
-        <h2>Превью документа</h2>
+        <div class="card-label card-label--preview">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <rect x="0.75" y="0.75" width="10.5" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M3 4h6M3 6.5h4M3 9h2.5" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"/>
+          </svg>
+          Превью документа
+        </div>
         <div id="preview-viewport">
           <div id="preview-inner">
             <div class="preview-empty">Начните заполнять форму…</div>

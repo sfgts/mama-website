@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4338ca"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <!-- Subtle top shine -->
+  <rect width="32" height="16" rx="7" fill="url(#shine)"/>
+
+  <!-- Document body -->
+  <path d="M9 6h9l5 5v15H9V6z"
+        fill="rgba(255,255,255,0.92)"
+        stroke="rgba(255,255,255,0.1)"
+        stroke-width="0.5"/>
+
+  <!-- Folded corner triangle (shadow) -->
+  <path d="M18 6l5 5h-5V6z"
+        fill="rgba(120,100,240,0.45)"/>
+
+  <!-- Text lines -->
+  <rect x="11.5" y="15" width="9" height="1.4" rx="0.7" fill="rgba(79,70,229,0.65)"/>
+  <rect x="11.5" y="18" width="7" height="1.4" rx="0.7" fill="rgba(79,70,229,0.50)"/>
+  <rect x="11.5" y="21" width="5" height="1.4" rx="0.7" fill="rgba(79,70,229,0.35)"/>
+</svg>
